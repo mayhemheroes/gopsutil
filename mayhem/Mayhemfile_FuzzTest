@@ -1,0 +1,9 @@
+project: gopsutil
+target: FuzzTest
+cmds:
+  - cmd: /mayhem/FuzzTest
+    libfuzzer: true
+    dictionary: /mayhem/mayhem/FuzzTest.dict
+testsuite:
+  - https://$MAYHEM_DOMAIN/$MAYHEM_PROJECT/$MAYHEM_TARGET/testsuite.tar
+  - file://mayhem/FuzzTest/testsuite

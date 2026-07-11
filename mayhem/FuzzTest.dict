@@ -1,0 +1,54 @@
+# libFuzzer dictionary for gopsutil's /proc/<pid>/limits parser (process.FuzzTest).
+# The parser tokenises each line with strings.Fields, skips a line whose last field
+# contains "Units", parses the last two fields as Hard/Soft limits (limitToUint, where
+# "unlimited" -> max uint64), and switches on the joined leading fields as the resource
+# name. These tokens help the fuzzer build well-formed limits lines quickly.
+
+# header / skip token
+"Units"
+"Limit"
+"Soft Limit"
+"Hard Limit"
+
+# special limit value
+"unlimited"
+
+# resource names (exact match in the parser switch)
+"Max cpu time"
+"Max file size"
+"Max data size"
+"Max stack size"
+"Max core file size"
+"Max resident set"
+"Max processes"
+"Max open files"
+"Max locked memory"
+"Max address space"
+"Max file locks"
+"Max pending signals"
+"Max msgqueue size"
+"Max nice priority"
+"Max realtime priority"
+"Max realtime timeout"
+
+# unit suffixes
+"seconds"
+"bytes"
+"processes"
+"files"
+"locks"
+"signals"
+"us"
+
+# number shapes
+"0"
+"1024"
+"8388608"
+"524288"
+"63087"
+"18446744073709551615"
+
+# whitespace
+" "
+"\x09"
+"\x0a"
